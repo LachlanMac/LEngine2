@@ -34,7 +34,7 @@ public class ServerReceiver extends Thread {
 	}
 	@Override
 	public void run(){
-		Log.print("Server Listener Started");
+		Log.print("Server Listener Started : Listening on port " + this.port);
 		while(true) {
 			
 			try {
@@ -46,11 +46,10 @@ public class ServerReceiver extends Thread {
 				
 				String received = new String(inPacket.getData());
 				
-				String packetID =  received.substring(0, 2);
-				String packetData = received.substring(2);
+				
 				
 			
-				pr.readPacket(packetID, packetData);
+				pr.readPacket(received);
 				
 				
 				
@@ -73,7 +72,7 @@ public class ServerReceiver extends Thread {
 		
 		try {
 			
-			Log.print("Sending Packet");
+			Log.print("Sendng Packet");
 			socket.send(p);
 			
 			

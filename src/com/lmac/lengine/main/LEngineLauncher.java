@@ -5,12 +5,12 @@ import org.newdawn.slick.SlickException;
 
 public class LEngineLauncher {
 
-	
+	//
 	public static void main(String[] args){
 		
 		AppGameContainer game;
 		try {
-			game = new AppGameContainer(new Lengine("GAME prealpha v0.001.15"));
+			game = new AppGameContainer(new Lengine("GAME prealpha v0.001.20"));
 			game.setDisplayMode(1280, 800, false);
 			game.setTargetFrameRate(60);
 			game.setMaximumLogicUpdateInterval(60);

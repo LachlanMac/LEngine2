@@ -19,7 +19,7 @@ import com.lmac.lengine.net.ServerReceiver;
 import com.lmac.lengine.net.ServerSender;
 import com.lmac.lengine.ui.GameUI;
 import com.lmac.lengine.utils.Log;
-
+//
 public class GameState extends BasicGameState {
 
 	Player p;
@@ -47,9 +47,7 @@ public class GameState extends BasicGameState {
 		em = new EntityManager();
 		gui = new GameUI(gc);
 
-		// serverConn = new
-		// Connection(InetAddress.getByName(Options.serverAddress),
-		// Options.gameServerPort);
+
 		receiver = new ServerReceiver(serverConn, game, em);
 
 		sender = new ServerSender(serverConn, game);
@@ -57,9 +55,10 @@ public class GameState extends BasicGameState {
 		sender.start();
 		receiver.start();
 
-		p = new Player(200, 300, gc, sender, receiver, Options.playerID);
-
-		em.addEntity(p);
+		p = new Player(200, 300, game, gc, em, sender, receiver, Options.playerID);
+		
+		em.addLocalPlayer(p);
+		
 
 	}
 

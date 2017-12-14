@@ -8,37 +8,45 @@ import com.lmac.lengine.utils.Log;
 public class PacketReader {
 
 	EntityManager em;
-
+////
 	public PacketReader(EntityManager em) {
 
 		this.em = em;
 
 	}
 
-	public void readPacket(String packetID, String packetData) {
+	public void readPacket(String packetData) {
+	
+		String data = new String(packetData);
 
-		switch (packetID) {
-		case "05":
+		String packetCode = data.substring(0, 3);
+		
+		
+		switch (packetCode) {
+		case "#05":
 			parseMovePacket(packetData);
 			break;
+			
 		case "02":
 			parseDisconnectPacket(packetData);
 			break;
+			
 		case "88":
 			parseHeartBeatPacket(packetData);
 			break;
-		case "41":
-			parseMPPlayerDisconnectPacket(packetData);
-			break;
+			
 		case "44":
 			parseMPPlayerMovementPacket(packetData);
 			break;
-		case "70":
+			
+		case "#70":
 			parseMPConnection(packetData);
 			break;
+			
 		case "01":
 			Log.print("WE SHOULD NOT BE HERE");
 			break;
+			
 		default:
 			Log.print("Invalid Packet ID");
 			break;
@@ -49,8 +57,9 @@ public class PacketReader {
 	public void parseMPConnection(String packetData) {
 
 		String[] data = packetData.split("=");
-		int playerID = Integer.parseInt(data[1]);
-
+		
+		int playerID = Integer.parseInt(data[1].trim());
+		em.getLocalPlayer().resetTimeOut();
 		if (playerID == Options.playerID) {
 			return;
 		} else {
@@ -62,56 +71,31 @@ public class PacketReader {
 
 	public void parseMPPlayerMovementPacket(String packetData) {
 		String[] data = packetData.split("=");
-		int playerID = Integer.parseInt(data[1]);
+		int playerID = Integer.parseInt(data[1].trim());
 
 		if (playerID == Options.playerID) {
 			return;
 		}
 
-		float xCoord = Float.parseFloat(data[2]);
-		float yCoord = Float.parseFloat(data[3]);
+		float xCoord = Float.parseFloat(data[2].trim());
+		float yCoord = Float.parseFloat(data[3].trim());
 
 		em.getPlayerMPByID(playerID).move(xCoord, yCoord);
 
 	}
 
-	public void parseMPPlayerConnectPacket(String packetData) {
-		String[] data = packetData.split("=");
-		int playerID = Integer.parseInt(data[1]);
-		if (playerID == Options.playerID) {
-			return;
-		}
-
-		String name = data[2];
-		Log.print("Added : ID[" + playerID + "]   at " + name);
-
-		em.addMPPlayer(new PlayerMP(0, 0, playerID, name));
-
-	}
-
-	public void parseMPPlayerDisconnectPacket(String packetData) {
-
-		String[] data = packetData.split("=");
-		int playerID = Integer.parseInt(data[1]);
-		if (playerID == Options.playerID) {
-			return;
-		}
-		em.removeMPPlayer(em.getPlayerMPByID(playerID));
-
-	}
 
 	public void parseMovePacket(String packetData) {
-
 		String[] data = packetData.split("=");
 
-		int playerID = Integer.parseInt(data[1]);
+		int playerID = Integer.parseInt(data[1].trim());
 
 		if (playerID == Options.playerID) {
 			return;
 		}
 
-		float xCoord = Float.parseFloat(data[2]);
-		float yCoord = Float.parseFloat(data[3]);
+		float xCoord = Float.parseFloat(data[2].trim());
+		float yCoord = Float.parseFloat(data[3].trim());
 
 		PlayerMP p = em.getPlayerMPByID(playerID);
 

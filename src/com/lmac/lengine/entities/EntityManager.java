@@ -5,6 +5,7 @@ import java.util.Vector;
 import org.newdawn.slick.Graphics;
 
 import com.lmac.lengine.config.Options;
+import com.lmac.lengine.entities.player.Player;
 import com.lmac.lengine.entities.player.PlayerMP;
 import com.lmac.lengine.utils.Log;
 
@@ -12,11 +13,13 @@ public class EntityManager {
 
 	public Vector<Entity> entityList;
 	public Vector<PlayerMP> playerList;
-
+	public Player localPlayer;
+//
 	public EntityManager() {
 
 		entityList = new Vector<Entity>();
 		playerList = new Vector<PlayerMP>();
+		
 
 	}
 
@@ -100,6 +103,11 @@ public class EntityManager {
 
 	}
 
+	public void addLocalPlayer(Player p) {
+		this.localPlayer = p;
+		entityList.add(p);
+	}
+	
 	public void addEntity(Entity e) {
 
 		Log.print("Added new Player to Entity Manager  CLIENTID=" + Options.playerID + " Entity ID =");
@@ -116,6 +124,9 @@ public class EntityManager {
 
 		}
 		return p;
+	}
+	public Player getLocalPlayer(){
+		return localPlayer;
 	}
 
 }

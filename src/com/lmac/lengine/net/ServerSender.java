@@ -14,7 +14,7 @@ import com.lmac.lengine.config.Options;
 import com.lmac.lengine.utils.Log;
 
 public class ServerSender extends Thread {
-
+//
 	private LinkedBlockingQueue<Packet> sendQueue;
 	private int port;
 	private DatagramSocket socket = null;

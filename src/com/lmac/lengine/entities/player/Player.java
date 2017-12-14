@@ -4,23 +4,31 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 
 import com.lmac.lengine.assets.TextureLoader;
 import com.lmac.lengine.entities.Entity;
+import com.lmac.lengine.entities.EntityManager;
 import com.lmac.lengine.net.MovePacket;
 import com.lmac.lengine.net.ServerReceiver;
 import com.lmac.lengine.net.ServerSender;
 import com.lmac.lengine.utils.Log;
 
 public class Player extends Entity {
+	//
 	int playerID;
+	StateBasedGame game;
 	ServerSender pOut;
 	ServerReceiver pIn;
 	GameContainer input;
+	EntityManager em;
 	Vector2f loc;
+	int timeOut = 0;
 	int speed = 3;
-	public Player(float x, float y, GameContainer input, ServerSender pOut, ServerReceiver pIn, int playerID) {
+	public Player(float x, float y, StateBasedGame game, GameContainer input, EntityManager em, ServerSender pOut, ServerReceiver pIn, int playerID) {
 		super(x, y);
+		this.em = em;
+		this.game = game;
 		this.input = input;
 		loc = new Vector2f(x, y);
 		this.pOut = pOut;
@@ -31,6 +39,11 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		
+		timeOut++;
+		if(timeOut > 600) {
+			em.removeEntity(this);
+			game.enterState(0);
+		}
 		move();
 	
 		
@@ -84,6 +97,11 @@ public class Player extends Entity {
 		pOut.addPacket(new MovePacket( moveP.getBytes()));
 		
 		
+	}
+	
+	public void resetTimeOut() {
+		Log.print("RESETING TIMEOUT");
+		timeOut = 0;
 	}
 	
 	public int getPlayerID(){
