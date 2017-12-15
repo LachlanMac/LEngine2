@@ -99,6 +99,14 @@ public class Player extends Entity {
 		
 	}
 	
+	
+	
+	public float getX() {
+		return loc.getX();
+	}
+	public float getY() {
+		return loc.getY();
+	}
 	public void resetTimeOut() {
 		Log.print("RESETING TIMEOUT");
 		timeOut = 0;

@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.lmac.lengine.config.Options;
 import com.lmac.lengine.entities.EntityManager;
 import com.lmac.lengine.entities.player.Player;
+import com.lmac.lengine.map.Map;
 import com.lmac.lengine.net.Connection;
 import com.lmac.lengine.net.HeartBeatPacket;
 import com.lmac.lengine.net.MovePacket;
@@ -19,6 +20,7 @@ import com.lmac.lengine.net.ServerReceiver;
 import com.lmac.lengine.net.ServerSender;
 import com.lmac.lengine.ui.GameUI;
 import com.lmac.lengine.utils.Log;
+
 //
 public class GameState extends BasicGameState {
 
@@ -29,6 +31,7 @@ public class GameState extends BasicGameState {
 	ServerReceiver receiver;
 	ServerSender sender;
 	EntityManager em;
+	Map map;
 
 	public GameState(Connection conn) {
 		this.serverConn = conn;
@@ -47,7 +50,6 @@ public class GameState extends BasicGameState {
 		em = new EntityManager();
 		gui = new GameUI(gc);
 
-
 		receiver = new ServerReceiver(serverConn, game, em);
 
 		sender = new ServerSender(serverConn, game);
@@ -56,23 +58,29 @@ public class GameState extends BasicGameState {
 		receiver.start();
 
 		p = new Player(200, 300, game, gc, em, sender, receiver, Options.playerID);
-		
-		em.addLocalPlayer(p);
-		
 
+		em.addLocalPlayer(p);
+
+		map = new Map(playerID, gc, p);
+		
+		map.buildMap("Elba.txt");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException {
-		gui.render(g);
+		map.render(g);
 		em.render(g);
+		g.resetTransform();
+		gui.render(g);
 
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException {
-		gui.update(gc);
+		map.update();
 		em.update();
+
+		gui.update(gc);
 		sender.addPacket(new HeartBeatPacket(p.getPlayerID()));
 	}
 

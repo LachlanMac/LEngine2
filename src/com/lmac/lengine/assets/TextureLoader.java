@@ -17,7 +17,7 @@ public class TextureLoader extends AssetLoader {
 	
 	
 	
-	public static Image player;
+	public static Image player, water, grass, dirt;
 	
 	
 	
@@ -31,7 +31,11 @@ public class TextureLoader extends AssetLoader {
 			player = new Image("res/textures/player.png");
 			
 			
+			water = new Image("res/textures/waterTile.png");
 			
+			grass = new Image("res/textures/grassTile.png");
+			
+			dirt = new Image("res/textures/dirtTile.png");
 			
 			
 			
