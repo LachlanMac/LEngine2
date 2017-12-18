@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 
 import com.lmac.lengine.map.tiles.DirtTile;
+import com.lmac.lengine.map.tiles.FloorTile;
 import com.lmac.lengine.map.tiles.GrassTile;
 import com.lmac.lengine.map.tiles.WaterTile;
 
@@ -71,16 +72,16 @@ public abstract class Tile {
 	}
 
 	public static Tile getTileByID(int x, int y, int id) {
-		if (id == 0) {
+		if (id == 1) {
 			return new GrassTile(x, y, id);
 		}
-		if (id == 1) {
+		if (id == 0) {
 			return new DirtTile(x, y, id);
 		}
 		if (id == 2) {
 			return new WaterTile(x, y, id);
 		} else {
-			return new GrassTile(x, y, id);
+			return new FloorTile(x, y, id);
 		}
 
 	}

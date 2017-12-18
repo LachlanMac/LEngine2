@@ -6,9 +6,10 @@ import com.lmac.lengine.entities.player.PlayerMP;
 import com.lmac.lengine.utils.Log;
 
 public class PacketReader {
-
+	
+	
 	EntityManager em;
-////
+
 	public PacketReader(EntityManager em) {
 
 		this.em = em;
@@ -18,8 +19,8 @@ public class PacketReader {
 	public void readPacket(String packetData) {
 	
 		String data = new String(packetData);
-
 		String packetCode = data.substring(0, 3);
+		
 		
 		
 		switch (packetCode) {
@@ -57,8 +58,11 @@ public class PacketReader {
 	public void parseMPConnection(String packetData) {
 
 		String[] data = packetData.split("=");
+		int packetID = Integer.parseInt(data[1].trim());
 		
-		int playerID = Integer.parseInt(data[1].trim());
+		//TODO handle more than one other player connecting
+		int playerID = Integer.parseInt(data[2].trim());
+		
 		em.getLocalPlayer().resetTimeOut();
 		if (playerID == Options.playerID) {
 			return;
@@ -71,14 +75,16 @@ public class PacketReader {
 
 	public void parseMPPlayerMovementPacket(String packetData) {
 		String[] data = packetData.split("=");
-		int playerID = Integer.parseInt(data[1].trim());
+		
+		int packetID = Integer.parseInt(data[1].trim());
+		int playerID = Integer.parseInt(data[2].trim());
 
 		if (playerID == Options.playerID) {
 			return;
 		}
 
-		float xCoord = Float.parseFloat(data[2].trim());
-		float yCoord = Float.parseFloat(data[3].trim());
+		float xCoord = Float.parseFloat(data[3].trim());
+		float yCoord = Float.parseFloat(data[4].trim());
 
 		em.getPlayerMPByID(playerID).move(xCoord, yCoord);
 
@@ -88,14 +94,16 @@ public class PacketReader {
 	public void parseMovePacket(String packetData) {
 		String[] data = packetData.split("=");
 
-		int playerID = Integer.parseInt(data[1].trim());
+		
+		int packetID = Integer.parseInt(data[1].trim());
+		int playerID = Integer.parseInt(data[2].trim());
 
 		if (playerID == Options.playerID) {
 			return;
 		}
 
-		float xCoord = Float.parseFloat(data[2].trim());
-		float yCoord = Float.parseFloat(data[3].trim());
+		float xCoord = Float.parseFloat(data[3].trim());
+		float yCoord = Float.parseFloat(data[4].trim());
 
 		PlayerMP p = em.getPlayerMPByID(playerID);
 

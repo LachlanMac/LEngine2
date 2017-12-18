@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import com.lmac.lengine.utils.Log;
 
@@ -17,8 +18,8 @@ public class TextureLoader extends AssetLoader {
 	
 	
 	
-	public static Image player, water, grass, dirt;
-	
+	public static Image player, water, grass, dirt, floor_base;
+	public static SpriteSheet cat1, cat2, cat3, floor;
 	
 	
 	private static HashMap<Integer, Image> skillGraphicMap = new HashMap<Integer, Image>();
@@ -37,9 +38,9 @@ public class TextureLoader extends AssetLoader {
 			
 			dirt = new Image("res/textures/dirtTile.png");
 			
+			floor = new SpriteSheet("res/textures/floorSpriteSheet.png", 64, 64);
 			
-			
-			
+			floor_base = floor.getSprite(0, 0);
 			
 			
 			

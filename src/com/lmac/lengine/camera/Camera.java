@@ -46,8 +46,7 @@ public class Camera {
 
 	public void render(Graphics g) {
 		// renders and indicator to show the camera coordinates
-		g.setColor(Color.white);
-		g.draw(new Rectangle(cameraPos.getX() - 3, cameraPos.getY() - 3, 6, 6));
+	
 	}
 
 	// translates the camera to render different parts of the gameworld
@@ -57,8 +56,8 @@ public class Camera {
 		g.scale(zoom, zoom);
 		// translate params
 
-		int xTrans = (int) (Options.screenWidth / (2 * zoom) - p.getX()- (p.getWidth() / 2));
-		int yTrans = (int) (Options.screenHeight / (2 * zoom) - p.getY()- (p.getHeight() / 2));
+		int xTrans = (int) (Options.screenWidth / (2 * zoom) - p.getCenter().getX());
+		int yTrans = (int) (Options.screenHeight / (2 * zoom) - p.getCenter().getY());
 
 		// clamps the camera to the size of the world
 		xClamp = (int) Math.max((map.getWorldWidth() * zoom) + Options.screenWidth, Math.min(xTrans, 0));
