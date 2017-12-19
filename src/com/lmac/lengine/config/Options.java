@@ -3,6 +3,7 @@ package com.lmac.lengine.config;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+
 public class Options {
 	public static int screenWidth = 1280;
 	public static int screenHeight = 800;
@@ -15,6 +16,9 @@ public class Options {
 	//PACKET VARIABLES
 	public static final int LOGIN_PACKET_SIZE = 128;
 	public static final String HEART_BEAT = "heartbeat";
+	
+	
+	public static PlayerData playerData = new PlayerData();
 	
 	public static InetAddress getInetAddress(){
 		InetAddress address = null;

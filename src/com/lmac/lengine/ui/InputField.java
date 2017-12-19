@@ -33,7 +33,7 @@ public class InputField extends LComponent{
 	}
 
 	public void action() {
-		Log.print("CLICK");
+
 		entryField.setFocus(true);
 	}
 	

@@ -67,8 +67,7 @@ public class MenuUI implements UI {
 			@Override
 			public void action() {
 				
-				Log.print(userName.getText().trim());
-				Log.print(password.getText().trim());
+	
 				String usr = userName.getText().trim();
 				String pwd = password.getText().trim();
 				String cID = charID.getText().trim();

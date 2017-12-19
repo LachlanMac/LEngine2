@@ -57,7 +57,7 @@ public class GameState extends BasicGameState {
 		sender.start();
 		receiver.start();
 
-		p = new Player(200, 300, game, gc, em, sender, receiver, Options.playerID);
+		p = new Player(Options.playerData.getStartX(), Options.playerData.getStartY(), game, gc, em, sender, receiver, Options.playerID, Options.playerData.getStartLevel());
 
 		em.addLocalPlayer(p);
 

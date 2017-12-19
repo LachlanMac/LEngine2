@@ -57,8 +57,15 @@ public class LoginConnection {
 				LoginCode.setCode(confirmation[1].trim());
 				LoginCode.setZone(Integer.parseInt(confirmation[2].trim()));
 				
+				Options.playerData.setStartZone(Integer.parseInt(confirmation[2].trim()));
+				Options.playerData.setStartX(Float.parseFloat(confirmation[3].trim()));
+				Options.playerData.setStartY(Float.parseFloat(confirmation[4].trim()));
+				Options.playerData.setStartLevel(Integer.parseInt(confirmation[5].trim()));
+				
+			
 				Log.print("LOGGED IN : CODE=" + LoginCode.code);
 				Log.print("LOGGED IN : ZONE=" + LoginCode.startZone);
+			
 				game.enterState(1);
 		
 				

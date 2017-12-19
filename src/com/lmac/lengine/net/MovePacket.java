@@ -3,7 +3,7 @@ package com.lmac.lengine.net;
 import java.net.DatagramPacket;
 
 public class MovePacket extends Packet{
-
+//
 	private byte[] moveData;
 	
 	public MovePacket(byte[] moveData){

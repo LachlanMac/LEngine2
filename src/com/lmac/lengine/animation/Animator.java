@@ -17,7 +17,7 @@ public class Animator {
 
 	private Direction lastMoved = Direction.DOWN;
 
-	public Animator(Entity e, Animation[] animationSet) {
+	public Animator(Animation[] animationSet) {
 		this.animationSet = animationSet;
 		down_anim = animationSet[0];
 		up_anim = animationSet[1];
@@ -33,6 +33,37 @@ public class Animator {
 	public Direction getLastDirection() {
 
 		return lastMoved;
+
+	}
+
+	public void setLastDirectionByString(String dir) {
+
+		switch (dir) {
+		case "Right":
+			lastMoved = Direction.RIGHT;
+			break;
+
+		case "Left":
+			lastMoved = Direction.LEFT;
+			break;
+		case "Up":
+			lastMoved = Direction.UP;
+			break;
+		case "Down":
+			lastMoved = Direction.DOWN;
+			break;
+		default:
+			lastMoved = lastMoved;
+
+		}
+	}
+
+	public boolean flip() {
+		if (lastMoved == Direction.RIGHT || lastMoved == Direction.LEFT) {
+			return true;
+		} else {
+			return false;
+		}
 
 	}
 
@@ -76,8 +107,7 @@ public class Animator {
 		}
 
 	}
-	
-	
+
 	public Animation getMovementAnim() {
 		if (lastMoved == Direction.DOWN) {
 			return down_anim;

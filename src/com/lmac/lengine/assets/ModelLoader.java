@@ -17,7 +17,12 @@ public class ModelLoader extends AssetLoader {
 	public static Animation cat_1_left_idle;
 	public static Animation cat_1_right_idle;
 	public static Animation[] cat_1_set;
-
+	
+	
+	
+	public static SpriteSheet bearwarrior_1;
+	public static Animation bearwarrior_1_down, bearwarrior_1_down_idle, bearwarrior_1_up, bearwarrior_1_up_idle, bearwarrior_1_left, bearwarrior_1_left_idle, bearwarrior_1_right, bearwarrior_1_right_idle;
+	public static Animation[] bearwarrior_1_set;
 	
 	public static SpriteSheet snake_1;
 	public static Animation snake_1_down, snake_1_up, snake_1_left, snake_1_right,  snake_1_down_idle, snake_1_up_idle, snake_1_left_idle, snake_1_right_idle;
@@ -69,6 +74,21 @@ public class ModelLoader extends AssetLoader {
 			butterlion_1_right_idle = new Animation(new Image[] {butterlion_1.getSprite(0, 1)}, 100);
 			
 			butterlion_1_set = new Animation[]{butterlion_1_down, butterlion_1_up, butterlion_1_left, butterlion_1_right,butterlion_1_down_idle, butterlion_1_up_idle, butterlion_1_left_idle, butterlion_1_right_idle};
+			
+			
+			
+			
+			bearwarrior_1 = new SpriteSheet("res/textures/spritesheets/BearWarrior.png", 64, 64);
+			bearwarrior_1_down = new Animation(new Image[] {bearwarrior_1.getSprite(1, 0), bearwarrior_1.getSprite(2, 0), bearwarrior_1.getSprite(3, 0), bearwarrior_1.getSprite(4, 0)}, 100);
+			bearwarrior_1_up = new Animation(new Image[] {butterlion_1.getSprite(1, 0), butterlion_1.getSprite(2, 0), butterlion_1.getSprite(3, 0), butterlion_1.getSprite(4, 0)}, 100);
+			bearwarrior_1_left = new Animation(new Image[] {butterlion_1.getSprite(1, 2), butterlion_1.getSprite(2, 2), butterlion_1.getSprite(3, 2), butterlion_1.getSprite(4, 2)}, 100);
+			bearwarrior_1_right = new Animation(new Image[] {butterlion_1.getSprite(1, 1), butterlion_1.getSprite(2, 1), butterlion_1.getSprite(3, 1), butterlion_1.getSprite(4, 1)}, 100);
+			bearwarrior_1_down_idle = new Animation(new Image[] {bearwarrior_1.getSprite(0, 0)}, 100);
+			bearwarrior_1_up_idle = new Animation(new Image[] {butterlion_1.getSprite(0, 0)}, 100);
+			bearwarrior_1_left_idle = new Animation(new Image[] {butterlion_1.getSprite(0, 2)}, 100);
+			bearwarrior_1_right_idle = new Animation(new Image[] {butterlion_1.getSprite(0, 1)}, 100);
+			
+			bearwarrior_1_set = new Animation[]{bearwarrior_1_down, butterlion_1_up, butterlion_1_left, butterlion_1_right, bearwarrior_1_down_idle, butterlion_1_up_idle, butterlion_1_left_idle, butterlion_1_right_idle};
 			
 			
 		} catch (SlickException e) {

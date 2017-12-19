@@ -33,7 +33,7 @@ public class PlayerMP extends Entity {
 		super(0, 0);
 		loc = new Vector2f(0, 0);
 		this.playerID = playerID;
-		this.anim = new Animator(this, ModelLoader.cat_1_set);
+		this.anim = new Animator(ModelLoader.cat_1_set);
 		currentAnim = anim.getDownIdle();
 	}
 
@@ -55,7 +55,7 @@ public class PlayerMP extends Entity {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.blue);
-		g.drawAnimation(currentAnim, getCenter().getX(), getCenter().getY());
+		g.drawAnimation(currentAnim, getX(), getY());
 	}
 
 	public int getPlayerID() {

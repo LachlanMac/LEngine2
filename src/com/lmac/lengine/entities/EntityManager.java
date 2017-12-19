@@ -14,12 +14,11 @@ public class EntityManager {
 	public Vector<Entity> entityList;
 	public Vector<PlayerMP> playerList;
 	public Player localPlayer;
-//
+
 	public EntityManager() {
 
 		entityList = new Vector<Entity>();
 		playerList = new Vector<PlayerMP>();
-		
 
 	}
 
@@ -107,10 +106,9 @@ public class EntityManager {
 		this.localPlayer = p;
 		entityList.add(p);
 	}
-	
+
 	public void addEntity(Entity e) {
 
-		Log.print("Added new Player to Entity Manager  CLIENTID=" + Options.playerID + " Entity ID =");
 		entityList.add(e);
 
 	}
@@ -125,8 +123,23 @@ public class EntityManager {
 		}
 		return p;
 	}
-	public Player getLocalPlayer(){
+
+	public Entity getCreatureByID(int id) {
+		Entity p = null;
+		for (int k = 0; k < entityList.size(); k++) {
+			if (entityList.get(k).getID() == id) {
+				p = entityList.get(k);
+			}
+
+		}
+		return p;
+	}
+
+	public Player getLocalPlayer() {
 		return localPlayer;
 	}
 
+	public Vector<Entity> getEntityList() {
+		return entityList;
+	}
 }
